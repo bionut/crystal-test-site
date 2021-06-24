@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  check print to pdf
+
+  <p>iframe same domain - should be visible</p>
+  <iframe src="https://crystal-test-site.balcauionut.repl.co/testpages/hello.html"></iframe>
+
+  <!-- <p>iframe same top level domain</p>
+  <iframe src="https://crystal-test-site-1.balcauionut.repl.co/testpages/hello.html"></iframe> -->
+  
+  <p>iframe other domain - should <b>not</b> be visible</p>
+  <iframe src="https://httpbin.org/get"></iframe>
+
+  <p>iframe other domain nested in same-domain - frame should be visible, but empty content</p>
+  <iframe src="https://crystal-test-site.balcauionut.repl.co/in-iframe?url=https://httpbin.org/headers"></iframe>
+
+
+  <p>iframe no src - frame should be visible, but empty content</p>
+  <iframe></iframe>
+
+  <p> iframe src=data url - should be visible</p>
+  <iframe src="data:text/html,<p>data url hello</p>"></iframe>
+
+  <p> iframe srcdoc - should be visible </p>
+
+  <iframe srcdoc="<p>srcdoc hello</p>"></iframe>
+
+</body>
+</html>

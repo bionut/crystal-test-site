@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Screen properties</title>
+</head>
+<body>
+  <span></span>
+  <script>
+    var data = {};
+    
+    setInterval(() => {
+      data.screen = {
+        innerWidth : window.innerWidth,
+        innerHeight : window.innerHeight,
+        screenWidth : screen.width,
+        screenHeight : screen.height
+      }
+      data.navigator = {
+        hardwareConcurrency: navigator.hardwareConcurrency
+      }
+      
+      document.querySelector('span').innerText = JSON.stringify(data, null ,2)
+      
+    }, 1000)
+    
+  </script>
+</body>
+</html>

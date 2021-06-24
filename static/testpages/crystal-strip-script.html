@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG with script </title>
+</head>
+<body>
+  <svg viewBox="0 0 3 3" xmlns="http://www.w3.org/2000/svg">
+  <script>
+  // <![CDATA[
+    console.warn('SCRIPT FROM SVG')
+  // ]]>
+  </script>
+  <circle cx="1" cy="1" r="1" />
+</svg>
+
+<script>
+  console.warn('SCRIPT FROM INITIAL HTML')
+  </script>
+  
+</body>
+</html>

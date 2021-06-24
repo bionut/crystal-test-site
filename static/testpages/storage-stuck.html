@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<p> Check local/session/cookie storage access renderer freeze </p>
+
+  <script>
+    let time = Date.now();
+
+    sessionStorage.setItem('test','test')
+    localStorage.setItem('test','test')
+    document.cookie = 'test=test;'
+    let result = document.createElement('h1')
+    result.id = "result"
+    document.body.appendChild(result)
+    let diff = Date.now() - time
+    if( diff > 1000) {
+      result.innerText = "FAIL, STUCK FOR " + diff + " ms"
+      result.style.color = "red"
+      result.classList.add('fail')
+    } else {
+      result.classList.add('pass')
+      result.innerText = "PASS"
+      result.style.color = "green"
+    }
+    </script>
+  
+</body>
+</html>

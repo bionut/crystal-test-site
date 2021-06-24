@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Clipoard tests</title>
+</head>
+
+<body>
+	<input></input>
+
+<br><button id="execCommandCopyFromInput" 
+    onclick="execCommandCopyText()">document.execCommand text from input</button>
+  <br><button id="execCommandCopyText" 
+    onclick="execCommandCopyText('execCommandCopyText')">document.execCommand 'execCommandCopyText'</button>
+  <br><button id="prototypeExecCommandCopyText" 
+    onclick="prototypeExecCommandCopyText('prototypeExecCommandCopyText')">HTMLDocument.prototype.execCommand.call(document,'copy')'prototypeExecCommandCopyText'</button>
+
+
+<script>
+
+  function execCommandCopyText(value){
+      var input = document.querySelector("input");
+      if(value) input.value = value;
+      input.select();
+      document.execCommand("copy");
+  }
+
+  function prototypeExecCommandCopyText(value) {
+    var input = document.querySelector("input");
+      if(value) input.value = value;
+      input.select();
+      HTMLDocument.prototype.execCommand.call(document,'copy')
+  }
+
+</script>
+  
+</body>
+</html>

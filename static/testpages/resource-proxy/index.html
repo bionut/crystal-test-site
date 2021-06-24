@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>resource proxying test</title>
+</head>
+
+<body>
+	<script>
+		window.addIframe = function(src) {
+  var iframe = document.createElement('iframe');
+  iframe.src = src;
+  iframe.style="width: 100%; height: 700px;"
+  document.body.appendChild(iframe)
+}
+	</script>
+
+	<button onclick="window.open('images.html')">images.html new window</button>
+
+  <button onclick="window.open('http://ynet.co.il')">ynet new window</button>
+
+  <button onclick="window.addIframe('images.html')">add iframe to images.html</button>
+
+  <button onclick="window.addIframe('https://ynet.co.il/')">add iframe to ynet.co.il</button>
+  <button onclick="window.addIframe('https://pptr.dev/')">add iframe to pptr.dev</button>
+</body>
+</html>

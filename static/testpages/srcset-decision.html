@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>srcset preload bug</title>
+</head>
+<body>
+
+<!-- bug: attribute is sizes not data-sizes -->
+<img data-image-w="1000" data-image-h="1060" data-focus-x="0.5" data-focus-y="0.5" title="Scuderia Ferrari Collection - Footwear" alt="7. Modulo banner 3_V1_Bn 2 Copy" sizes="(min-width: 1024px) 33vw, 100vw" class="card-square-text-cta__image lazyload loaded" data-src="https://store.ferrari.com/cms/ycm/resource/blob/520684/0dc9f9f185164a68d5bc92d8584a7d06/7-modulo-banner-3-v1-bn-2-copy-data.jpg?imwidth=&amp;imdensity=1" data-srcset="https://store.ferrari.com/cms/ycm/resource/blob/520684/0dc9f9f185164a68d5bc92d8584a7d06/7-modulo-banner-3-v1-bn-2-copy-data.jpg?imwidth=320&amp;imdensity=1 320w,https://store.ferrari.com/cms/ycm/resource/blob/520684/0dc9f9f185164a68d5bc92d8584a7d06/7-modulo-banner-3-v1-bn-2-copy-data.jpg?imwidth=640&amp;imdensity=1 640w,https://store.ferrari.com/cms/ycm/resource/blob/520684/0dc9f9f185164a68d5bc92d8584a7d06/7-modulo-banner-3-v1-bn-2-copy-data.jpg?imwidth=960&amp;imdensity=1 960w,https://store.ferrari.com/cms/ycm/resource/blob/520684/0dc9f9f185164a68d5bc92d8584a7d06/7-modulo-banner-3-v1-bn-2-copy-data.jpg?imwidth=1280&amp;imdensity=1 1280w,https://store.ferrari.com/cms/ycm/resource/blob/520684/0dc9f9f185164a68d5bc92d8584a7d06/7-modulo-banner-3-v1-bn-2-copy-data.jpg?imwidth=1600&amp;imdensity=1 1600w,https://store.ferrari.com/cms/ycm/resource/blob/520684/0dc9f9f185164a68d5bc92d8584a7d06/7-modulo-banner-3-v1-bn-2-copy-data.jpg?imwidth=1920&amp;imdensity=1 1920w,https://store.ferrari.com/cms/ycm/resource/blob/520684/0dc9f9f185164a68d5bc92d8584a7d06/7-modulo-banner-3-v1-bn-2-copy-data.jpg?imwidth=2240&amp;imdensity=1 2240w,https://store.ferrari.com/cms/ycm/resource/blob/520684/0dc9f9f185164a68d5bc92d8584a7d06/7-modulo-banner-3-v1-bn-2-copy-data.jpg?imwidth=2560&amp;imdensity=1 2560w,https://store.ferrari.com/cms/ycm/resource/blob/520684/0dc9f9f185164a68d5bc92d8584a7d06/7-modulo-banner-3-v1-bn-2-copy-data.jpg?imwidth=2880&amp;imdensity=1 2880w,https://store.ferrari.com/cms/ycm/resource/blob/520684/0dc9f9f185164a68d5bc92d8584a7d06/7-modulo-banner-3-v1-bn-2-copy-data.jpg?imwidth=3200&amp;imdensity=1 3200w" style="display: block;">
+
+
+<script>
+
+  let $img = document.querySelector('img');
+
+  let $preloadImg = new Image();
+  $preloadImg.setAttribute('sizes', $img.getAttribute('data-sizes'))
+  $preloadImg.setAttribute('srcset', $img.getAttribute('data-srcset'))
+  $preloadImg.setAttribute('src', $img.getAttribute('data-src'))
+
+let onload = () => {
+    console.log('preload img onload', $preloadImg.currentSrc)
+
+    $img.setAttribute('sizes', $img.getAttribute('data-sizes')); $img.removeAttribute('data-sizes');
+    $img.setAttribute('srcset', $img.getAttribute('data-srcset')); $img.removeAttribute('data-srcset');
+    $img.setAttribute('src', $img.getAttribute('data-src')); $img.removeAttribute('data-src');
+
+    $preloadImg.removeEventListener('load', onload)
+  }
+  $preloadImg.addEventListener('load', onload)
+
+  $preloadImg.addEventListener('loadstart', () => {
+    console.log('preload img onloadstart', $preloadImg.currentSrc)
+  })
+
+  let $img = 
+
+</script>
+  
+</body>
+</html>

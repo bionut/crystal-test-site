@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="log">
+	</div>
+
+
+	<script>
+		var $log = document.querySelector('#log');
+    function log(val) { 
+      let div = document.createElement('div'); 
+      div.innerText = val; 
+      $log.appendChild(div)
+    }
+
+function randomString() {
+ return Math.random().toString(36).slice(3,5);
+}
+      let lastTime = Date.now();
+      setInterval(() => {
+        let now = Date.now();
+        let time = now - lastTime;
+        lastTime = now;
+        log(time)
+        localStorage.setItem(randomString(),randomString())
+        console.log(localStorage.getItem(randomString()))
+        // sessionStorage.setItem(randomString(), randomString())
+        console.log(sessionStorage.getItem(randomString()))
+        document.cookie = `${randomString()}=${randomString()}
+        `;
+
+        console.log(document.cookie)
+      }, 500)
+	</script>
+
+</body>
+
+</html>

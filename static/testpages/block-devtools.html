@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+let i = 0;
+console.log(i)
+setInterval(() => {
+  console.log(++i)
+}, 2000)
+
+    </script>
+
+
+    <script> 
+    
+    // 1.  debugger statement in loop
+    // can stop you from using breakpoints, stops the app, might affect performance
+    // you can still copy from Elements tab - not good
+    //  setTimeout(function() {while (true) {eval("debugger") } } )
+
+    // 2. detect sourcemap request - trivial to bypass, inconsistent on Firefox
+
+          // From https://weizman.github.io/website/?javascript-anti-debugging-some-next-level-shit-part-1
+    // function  smap(url)  {
+    //      const script = document.createElement('script');
+    //      script.textContent =  `//# sourceMappingURL=${url}`;
+    //      document.head.appendChild(script);
+    //      script.remove();  // that's right! the script doesn't even have to stay in DOM for this feature to work! how cool is that?!
+    // }
+    // smap('https://crystal-test-site.balcauionut.repl.co/fakesourcemap.map'); 
+    
+    // function getCookieValue(a) {
+    //     var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+    //     return b ? b.pop() : '';
+    // }
+
+    // setInterval( () => { 
+    //         if (getCookieValue("DevTools") == "true") {
+    //         alert("DevTools opened!");
+    //     }
+    //      }, 100);
+
+
+    // 3. seems to work in Chrome/Edge, not in Firefox
+    //     const element = new Image();
+    // Object.defineProperty(element, 'id', {
+    //   get: function () {
+    //     alert('devtools opened')
+    //   }
+    // });
+    // console.log('%c', element);
+
+
+
+    var reg = / /;
+    var isOpen = false;
+
+    reg.toString = () => {
+      isOpen = true;
+      alert('devtools open')
+    };
+
+    console.log(reg)
+    
+
+
+
+      </script>
+</body>
+</html>
